@@ -1,5 +1,6 @@
 package com.ta.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,8 @@ public class SampleController extends BaseController {
   private ISampleService sampleService;
 
   @GetMapping("/")
-  public ApiResponse<SampleModel> getSample() {
+  public ApiResponse<SampleModel> getSample(Principal principal) {
+    System.out.println(principal.getName());
     return processAction(() -> sampleService.getSampleModel(), null, "sample.retrieval.error");
   }
 
